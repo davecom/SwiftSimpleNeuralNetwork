@@ -3,7 +3,7 @@ A simple multi-layer feed-forward neural network with backpropagation built in S
 
 ## Philosophy
 This *teaching* project is proclaimed *simple* for two reasons:
-- The code aims to be simple to understand. Sometimes at the expense of performance. I built this project to learn more about implementing neural networks. It does not aim to be state of the art or feature complete, but instead approachable.
+- The code aims to be simple to understand (even at the expense of performance). I built this project to learn more about implementing neural networks. It does not aim to be state of the art or feature complete, but instead approachable.
 - The type of neural network targetted is very specific - only multi-layer feed-forward backpropagation networks. Why? Because we're keeping it simple,
 
 Contributions to the project will be measured not only by their functional aspects (improved performance, more features) but also by how much they stick to the philosophy.
@@ -22,6 +22,13 @@ For the present, the best way to try the project out is through the wine and iri
 ### SPM
 
 You can also install the project's main files (but not the unit tests) through SPM via this repository.
+
+## Unit Tests/Examples
+
+[x] indicates passing/working
+- [x] `IrisTest.swift` uses the classic data set (contained in `iris.csv`) to classify 150 irises by four attributes.
+- [x] `WineTest.swift` uses a data set of 178 wines across three cultivars (contained in `wine.csv`) to classify wines by cultivar. Trains on the first 150 and then classifies the remaining 28.
+- [ ] `SinTest.swift` tries to learn to approximate the sin() function. ~80% of predictions come close to correct values.
 
 ## License, Contributions, and Attributions
 
