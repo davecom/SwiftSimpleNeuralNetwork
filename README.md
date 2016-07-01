@@ -25,7 +25,7 @@ You can also install the project's main files (but not the unit tests) through S
 
 ## Unit Tests/Examples
 
-[x] indicates passing/working
+A check indicates a test is passing/working.
 - [x] `IrisTest.swift` uses the classic data set (contained in `iris.csv`) to classify 150 irises by four attributes.
 - [x] `WineTest.swift` uses a data set of 178 wines across three cultivars (contained in `wine.csv`) to classify wines by cultivar. Trains on the first 150 and then classifies the remaining 28.
 - [ ] `SinTest.swift` tries to learn to approximate the sin() function. ~80% of predictions come close to correct values.
