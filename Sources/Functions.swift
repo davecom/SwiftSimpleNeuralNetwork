@@ -20,34 +20,41 @@
 import Accelerate
 import Foundation
 
-// this struct & the randomFractional() function
-// based on http://stackoverflow.com/a/35919911/281461
-struct Math {
-    private static var seeded = false
-    
-    static func randomFractional() -> Double {
-        
-        if !Math.seeded {
-            let time = Int(NSDate().timeIntervalSinceReferenceDate)
-            srand48(time)
-            Math.seeded = true
-        }
-        
-        return drand48()
-    }
-    
-    static func randomTo(limit: Double) -> Double {
-        
-        if !Math.seeded {
-            let time = Int(NSDate().timeIntervalSinceReferenceDate)
-            srand48(time)
-            Math.seeded = true
-        }
-        
-        return drand48() * limit
+// MARK: Randomization & Statistical Helpers
+
+/// Create *number* of random Doubles between 0.0 and 1.0
+func randomWeights(number: Int) -> [Double] {
+    return (0..<number).map{ _ in Math.randomFractional() }
+}
+
+/// Create *number* of random Doubles between 0.0 and *limit*
+func randomNums(number: Int, limit: Double) -> [Double] {
+    return (0..<number).map{ _ in Math.randomTo(limit: limit) }
+}
+
+/// primitive shuffle - not fisher yates... not uniform distribution
+extension Sequence where Iterator.Element : Comparable {
+    var shuffled: [Self.Iterator.Element] {
+        return sorted { _, _ in arc4random() % 2 == 0 }
     }
 }
 
+/// assumes all rows are of equal length
+/// and divide each column by its max throughout the data set
+/// for that column
+func normalizeByColumnMax( dataset:inout [[Double]]) {
+    for colNum in 0..<dataset[0].count {
+        let column = dataset.map { $0[colNum] }
+        let maximum = column.max()!
+        for rowNum in 0..<dataset.count {
+            dataset[rowNum][colNum] = dataset[rowNum][colNum] / maximum
+        }
+    }
+}
+
+// MARK: Activation Functions and Their Derivatives
+
+/// the classic sigmoid activation function
 func sigmoid(_ x: Double) -> Double {
     return 1.0 / (1.0 + exp(-x))
 }
@@ -56,6 +63,8 @@ func sigmoid(_ x: Double) -> Double {
 func derivativeSigmoid(_ x: Double) -> Double {
     return sigmoid(x) * (1 - sigmoid(x))
 }
+
+// MARK: SIMD Accelerated Math
 
 // Based on example from Surge project
 // https://github.com/mattt/Surge/blob/master/Source/Arithmetic.swift
@@ -80,7 +89,7 @@ public func sub(x: [Double], y: [Double]) -> [Double] {
     return results
 }
 
-// Another Surge example, see above
+// Another Surge example, see above citation
 public func mul(x: [Double], y: [Double]) -> [Double] {
     var results = [Double](repeating: 0.0, count: x.count)
     vDSP_vmulD(x, 1, y, 1, &results, 1, vDSP_Length(x.count))
@@ -88,7 +97,7 @@ public func mul(x: [Double], y: [Double]) -> [Double] {
     return results
 }
 
-// Another Surge example, see above
+// Another Surge example, see above citation
 public func sum(x: [Double]) -> Double {
     var result: Double = 0.0
     vDSP_sveD(x, 1, &result, vDSP_Length(x.count))
@@ -96,29 +105,33 @@ public func sum(x: [Double]) -> Double {
     return result
 }
 
+// MARK: Random Number Generation
 
-func randomWeights(number: Int) -> [Double] {
-    return (0..<number).map{ _ in Math.randomFractional() }
-}
-
-func randomNums(number: Int, limit: Double) -> [Double] {
-    return (0..<number).map{ _ in Math.randomTo(limit: limit) }
-}
-
-// primitive shuffle - not fisher yates... not uniform distribution
-extension Sequence where Iterator.Element : Comparable {
-    var shuffled: [Self.Iterator.Element] {
-        return sorted { _, _ in arc4random() % 2 == 0 }
-    }
-}
-
-// assumes all rows are of equal length
-func normalizeByColumnMax( dataset:inout [[Double]]) {
-    for colNum in 0..<dataset[0].count {
-        let column = dataset.map { $0[colNum] }
-        let maximum = column.max()!
-        for rowNum in 0..<dataset.count {
-            dataset[rowNum][colNum] = dataset[rowNum][colNum] / maximum
+// this struct & the randomFractional() function
+// based on http://stackoverflow.com/a/35919911/281461
+struct Math {
+    private static var seeded = false
+    
+    static func randomFractional() -> Double {
+        
+        if !Math.seeded {
+            let time = Int(NSDate().timeIntervalSinceReferenceDate)
+            srand48(time)
+            Math.seeded = true
         }
+        
+        return drand48()
+    }
+    
+    // addition, just multiplies random number by *limit*
+    static func randomTo(limit: Double) -> Double {
+        
+        if !Math.seeded {
+            let time = Int(NSDate().timeIntervalSinceReferenceDate)
+            srand48(time)
+            Math.seeded = true
+        }
+        
+        return drand48() * limit
     }
 }

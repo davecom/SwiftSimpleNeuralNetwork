@@ -21,31 +21,28 @@ class Layer {
     var neurons: [Neuron]
     var outputCache: [Double]
     
+    // for future use in deserializing networks
     init(previousLayer: Layer? = nil, neurons: [Neuron] = [Neuron]()) {
         self.previousLayer = previousLayer
         self.neurons = neurons
         self.outputCache = Array<Double>(repeating: 0.0, count: neurons.count)
     }
     
+    // main init
     init(previousLayer: Layer? = nil, numNeurons: Int, activationFunction: (Double) -> Double, derivativeActivationFunction: (Double)-> Double, learningRate: Double) {
         self.previousLayer = previousLayer
         self.neurons = Array<Neuron>()
         for _ in 0..<numNeurons {
             self.neurons.append(Neuron(weights: randomWeights(number: previousLayer?.neurons.count ?? 0), activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate))
         }
-        /*self.neurons = Array<Neuron>(repeating: Neuron(weights: randomWeights(number: previousLayer?.neurons.count ?? 0), activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate), count: numNeurons)*/
         self.outputCache = Array<Double>(repeating: 0.0, count: neurons.count)
     }
     
     func outputs(inputs: [Double]) -> [Double] {
         if previousLayer == nil { // input layer (first layer)
             outputCache = inputs
-        } else {
+        } else { // hidden layer or output layer
             outputCache = neurons.map { $0.output(inputs: inputs) }
-            /*[Double]()
-            for neuron in neurons {
-                outputCache.append(neuron.output(inputs: inputs))
-            }*/
         }
         return outputCache
     }

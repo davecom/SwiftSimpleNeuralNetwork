@@ -18,6 +18,8 @@
 
 import Foundation // for sqrt
 
+/// Represents an entire neural network. From largest to smallest we go
+/// Network -> Layers -> Neurons
 class Network {
     var layers: [Layer]
     
@@ -35,10 +37,15 @@ class Network {
         }
     }
     
+    /// pushes input data to the first layer
+    /// then output from the first as input to the second
+    /// second to the third, etc.
     func outputs(input: [Double]) -> [Double] {
         return layers.reduce(input) { $1.outputs(inputs: $0) }
     }
     
+    /// Figure out each neuron's changes based on the errors
+    /// of the output versus the expected outcome
     func backPropagate(expected: [Double]) {
         //calculate delta for output layer neurons
         layers.last?.calculateDeltasForOutputLayer(expected: expected)
@@ -48,6 +55,9 @@ class Network {
         }
     }
     
+    /// backPropagate() doesn't actually change any weights
+    /// this function uses the deltas calculated in backPropagate()
+    /// to actually make changes to the weights
     func updateWeights() {
         for layer in layers {
             for neuron in layer.neurons {
@@ -58,6 +68,9 @@ class Network {
         }
     }
     
+    /// train() uses the results of outputs() run over
+    /// many *inputs* and compared against *expecteds* to feed
+    /// backPropagate() and updateWeights()
     func train(inputs:[[Double]], expecteds:[[Double]], printError:Bool = false, threshold:Double? = nil) {
         for (location, xs) in inputs.enumerated() {
             let ys = expecteds[location]
@@ -72,7 +85,10 @@ class Network {
         }
     }
     
-    // for generalized results that require classification
+    /// for generalized results that require classification
+    /// this function will return the correct number of trials
+    /// and the percentge correct out of the total
+    /// See the unit tests for some examples
     func validate<T: Equatable>(inputs:[[Double]], expecteds:[T], interpretOutput: ([Double]) -> T) -> (correct: Int, total: Int, percentage: Double) {
         var correct = 0
         for (input, expected) in zip(inputs, expecteds) {
