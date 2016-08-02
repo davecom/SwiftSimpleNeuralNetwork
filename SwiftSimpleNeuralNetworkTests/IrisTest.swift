@@ -35,7 +35,7 @@ class IrisTest: XCTestCase {
     
     func parseIrisCSV() {
         let myBundle = Bundle.init(for: IrisTest.self)
-        let urlpath = myBundle.pathForResource("iris", ofType: "csv")
+        let urlpath = myBundle.path(forResource: "iris", ofType: "csv")
         let url = URL(fileURLWithPath: urlpath!)
         let csv = try! String.init(contentsOf: url)
         let lines = csv.components(separatedBy: "\n")
