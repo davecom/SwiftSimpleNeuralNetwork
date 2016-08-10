@@ -36,7 +36,7 @@ class WineTest: XCTestCase {
     
     func parseWineCSV() {
         let myBundle = Bundle.init(for: WineTest.self)
-        let urlpath = myBundle.pathForResource("wine", ofType: "csv")
+        let urlpath = myBundle.path(forResource: "wine", ofType: "csv")
         let url = URL(fileURLWithPath: urlpath!)
         let csv = try! String.init(contentsOf: url)
         let lines = csv.components(separatedBy: "\n")
