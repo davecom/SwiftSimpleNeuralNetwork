@@ -26,7 +26,7 @@ class Neuron {
     var delta: Double = 0.0
     var learningRate: Double
     
-    init(weights: [Double], activationFunction: (Double) -> Double, derivativeActivationFunction: (Double) -> Double, learningRate: Double = 0.25) {
+    init(weights: [Double], activationFunction: @escaping (Double) -> Double, derivativeActivationFunction: @escaping (Double) -> Double, learningRate: Double = 0.25) {
         self.weights = weights
         self.activationFunction = activationFunction
         self.derivativeActivationFunction = derivativeActivationFunction

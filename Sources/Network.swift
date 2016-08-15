@@ -23,7 +23,7 @@ import Foundation // for sqrt
 class Network {
     var layers: [Layer]
     
-    init(layerStructure:[Int], activationFunction: (Double) -> Double = sigmoid, derivativeActivationFunction: (Double) -> Double = derivativeSigmoid, learningRate: Double = 0.25) {
+    init(layerStructure:[Int], activationFunction: @escaping (Double) -> Double = sigmoid, derivativeActivationFunction: @escaping (Double) -> Double = derivativeSigmoid, learningRate: Double = 0.25) {
         if (layerStructure.count < 3) {
             print("Error: Should be at least 3 layers (1 input, 1 hidden, 1 output)")
         }
