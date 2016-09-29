@@ -29,7 +29,7 @@ class Layer {
     }
     
     // main init
-    init(previousLayer: Layer? = nil, numNeurons: Int, activationFunction: (Double) -> Double, derivativeActivationFunction: (Double)-> Double, learningRate: Double) {
+    init(previousLayer: Layer? = nil, numNeurons: Int, activationFunction: @escaping (Double) -> Double, derivativeActivationFunction: @escaping (Double)-> Double, learningRate: Double) {
         self.previousLayer = previousLayer
         self.neurons = Array<Neuron>()
         for _ in 0..<numNeurons {
