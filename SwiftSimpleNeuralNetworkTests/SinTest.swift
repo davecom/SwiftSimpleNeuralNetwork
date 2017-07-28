@@ -45,7 +45,7 @@ class SwiftSimpleNeuralNetworkTests: XCTestCase {
         let xs = xos.map{[$0 / 1000]}
         let results = network.validate(inputs: xs, expecteds: ys, accuracy: 0.05)
         print("\(results.correct) correct of \(results.total) = \(results.percentage * 100)%")
-        XCTAssertEqualWithAccuracy(results.percentage, 1.00, accuracy: 0.05, "Did not come within a 95% confidence interval")
+        XCTAssertEqual(results.percentage, 1.00, accuracy: 0.05, "Did not come within a 95% confidence interval")
     }
     
 }

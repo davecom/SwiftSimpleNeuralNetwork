@@ -89,7 +89,7 @@ class WineTest: XCTestCase {
     func testSamples() {
         let results = network.validate(inputs: wineSamples, expecteds: wineCultivars, interpretOutput: interpretOutput)
         print("\(results.correct) correct of \(results.total) = \(results.percentage * 100)%")
-        XCTAssertEqualWithAccuracy(results.percentage, 1.00, accuracy: 0.05, "Did not come within a 95% confidence interval")
+        XCTAssertEqual(results.percentage, 1.00, accuracy: 0.05, "Did not come within a 95% confidence interval")
     }
 
 }
