@@ -50,7 +50,7 @@ class Network {
         //calculate delta for output layer neurons
         layers.last?.calculateDeltasForOutputLayer(expected: expected)
         //calculate delta for prior layers
-        for l in 1..<layers.count - 1 {
+        for l in 1..<layers.count - 1 { // skip input layer
             layers[l].calculateDeltasForHiddenLayer(nextLayer: layers[l + 1])
         }
     }
@@ -59,7 +59,7 @@ class Network {
     /// this function uses the deltas calculated in backPropagate()
     /// to actually make changes to the weights
     func updateWeights() {
-        for layer in layers {
+        for layer in layers.dropFirst() { // skip input layer
             for neuron in layer.neurons {
                 for w in 0..<neuron.weights.count {
                     neuron.weights[w] = neuron.weights[w] + (neuron.learningRate * (layer.previousLayer?.outputCache[w])!  * neuron.delta)
