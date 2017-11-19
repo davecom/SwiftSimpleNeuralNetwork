@@ -13,7 +13,7 @@ While this project is functional (as of this version, it is accurately predictin
 
 ## Installation
 
-**The project requires Xcode 8 and Swift 3.**
+**The project requires Xcode 9 and Swift 4.**
 
 ### Manual
 
