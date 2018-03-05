@@ -64,6 +64,15 @@ func derivativeSigmoid(_ x: Double) -> Double {
     return sigmoid(x) * (1 - sigmoid(x))
 }
 
+func ReLU(_ x: Double) -> Double {
+    return max(0, x)
+}
+
+func derivativeReLU(_ x: Double) -> Double {
+    if x > 0 { return 1 }
+    return 0
+}
+
 // MARK: SIMD Accelerated Math
 
 // Based on example from Surge project
