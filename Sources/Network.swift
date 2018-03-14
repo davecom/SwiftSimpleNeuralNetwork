@@ -23,18 +23,21 @@ import Foundation // for sqrt
 class Network {
     var layers: [Layer]
     
-    init(layerStructure:[Int], activationFunction: @escaping (Double) -> Double = sigmoid, derivativeActivationFunction: @escaping (Double) -> Double = derivativeSigmoid, learningRate: Double = 0.25) {
+    init(layerStructure:[Int], activationFunction: @escaping (Double) -> Double = sigmoid, derivativeActivationFunction: @escaping (Double) -> Double = derivativeSigmoid, learningRate: Double = 0.25, hasBias: Bool = false) {
         if (layerStructure.count < 3) {
             print("Error: Should be at least 3 layers (1 input, 1 hidden, 1 output)")
         }
         layers = [Layer]()
         // input layer
-        layers.append(Layer(numNeurons: layerStructure[0], activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate))
+        layers.append(Layer(numNeurons: layerStructure[0], activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate, hasBias: hasBias))
         
-        // hidden layers and output layer
-        for x in layerStructure.enumerated() where x.offset != 0 {
-            layers.append(Layer(previousLayer: layers[x.offset - 1], numNeurons: x.element, activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate))
+        // hidden layers
+        for x in layerStructure.enumerated() where x.offset != 0 && x.offset != layerStructure.count - 1 {
+            layers.append(Layer(previousLayer: layers[x.offset - 1], numNeurons: x.element, activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate, hasBias: hasBias))
         }
+        
+        // output layer (can't have bias node)
+        layers.append(Layer(previousLayer: layers[layerStructure.count - 2], numNeurons: layerStructure.last!, activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate, hasBias: false))
     }
     
     /// pushes input data to the first layer
@@ -62,7 +65,7 @@ class Network {
         for layer in layers.dropFirst() { // skip input layer
             for neuron in layer.neurons {
                 for w in 0..<neuron.weights.count {
-                    neuron.weights[w] = neuron.weights[w] + (neuron.learningRate * (layer.previousLayer?.outputCache[w])!  * neuron.delta)
+                    neuron.weights[w] = neuron.weights[w] + (neuron.learningRate * (layer.previousLayer?.outputCache[w])! * neuron.delta)
                 }
             }
         }
@@ -106,7 +109,9 @@ class Network {
         var correct = 0
         for (input, expected) in zip(inputs, expecteds) {
             let result = outputs(input: input)[0]
-            if abs(expected - result) < accuracy {
+            let difference = abs(expected - result)
+            let percentOff = expected != 0 ? difference / expected : difference
+            if percentOff < accuracy {
                 correct += 1
             }
         }

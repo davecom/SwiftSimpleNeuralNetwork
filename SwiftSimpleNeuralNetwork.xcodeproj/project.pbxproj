@@ -23,6 +23,8 @@
 		555015C31D224E33004D3F18 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F28BD1D0C972200B11A8F /* Layer.swift */; };
 		5585848F1D25C3D400978802 /* wine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5585848E1D25C3D400978802 /* wine.csv */; };
 		558584911D25C3FE00978802 /* WineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558584901D25C3FE00978802 /* WineTest.swift */; };
+		559C37582058BB5400814909 /* BiasNeuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C37572058BB5400814909 /* BiasNeuron.swift */; };
+		559C37592058BF2000814909 /* BiasNeuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C37572058BB5400814909 /* BiasNeuron.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 		555015BA1D224DCB004D3F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5585848E1D25C3D400978802 /* wine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wine.csv; sourceTree = "<group>"; };
 		558584901D25C3FE00978802 /* WineTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WineTest.swift; sourceTree = "<group>"; };
+		559C37572058BB5400814909 /* BiasNeuron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiasNeuron.swift; path = Sources/BiasNeuron.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,7 @@
 			children = (
 				550F28C11D0CA5E600B11A8F /* Functions.swift */,
 				550F28BB1D0C96CB00B11A8F /* Neuron.swift */,
+				559C37572058BB5400814909 /* BiasNeuron.swift */,
 				550F28BF1D0C975600B11A8F /* Network.swift */,
 				550F28BD1D0C972200B11A8F /* Layer.swift */,
 			);
@@ -235,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				550F28BE1D0C972200B11A8F /* Layer.swift in Sources */,
+				559C37582058BB5400814909 /* BiasNeuron.swift in Sources */,
 				550F28BC1D0C96CB00B11A8F /* Neuron.swift in Sources */,
 				550F28C01D0C975600B11A8F /* Network.swift in Sources */,
 				550F28C21D0CA5E600B11A8F /* Functions.swift in Sources */,
@@ -247,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				555015B91D224DCB004D3F18 /* SinTest.swift in Sources */,
+				559C37592058BF2000814909 /* BiasNeuron.swift in Sources */,
 				555015C11D224E33004D3F18 /* Neuron.swift in Sources */,
 				553E02871D22E41500E1C3B3 /* IrisTest.swift in Sources */,
 				555015C31D224E33004D3F18 /* Layer.swift in Sources */,

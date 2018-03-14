@@ -28,7 +28,7 @@ import Foundation
 /// and for validation (yes, bad probably).
 class IrisTest: XCTestCase {
 
-    var network: Network = Network(layerStructure: [4,20,3], learningRate: 0.3)
+    var network: Network = Network(layerStructure: [4,20,3], learningRate: 0.3, hasBias: true)
     var irisParameters: [[Double]] = [[Double]]()
     var irisClassifications: [[Double]] = [[Double]]()
     var irisSpecies: [String] = [String]()

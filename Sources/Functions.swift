@@ -61,7 +61,8 @@ func sigmoid(_ x: Double) -> Double {
 
 // as derived at http://www.ai.mit.edu/courses/6.892/lecture8-html/sld015.htm
 func derivativeSigmoid(_ x: Double) -> Double {
-    return sigmoid(x) * (1 - sigmoid(x))
+    let sigRes = sigmoid(x)
+    return sigRes * (1 - sigRes)
 }
 
 func ReLU(_ x: Double) -> Double {
@@ -71,6 +72,14 @@ func ReLU(_ x: Double) -> Double {
 func derivativeReLU(_ x: Double) -> Double {
     if x > 0 { return 1 }
     return 0
+}
+
+func tanh(_ x: Double) -> Double {
+    return (exp(x) - exp(-x)) / (exp(x) + exp(-x))
+}
+
+func derivativeTanh(_ x: Double) -> Double {
+    return 1 - pow(tanh(x), 2)
 }
 
 // MARK: SIMD Accelerated Math

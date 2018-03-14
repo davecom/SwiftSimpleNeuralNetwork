@@ -26,7 +26,7 @@ import Foundation
 /// 28 previously unseen wines.
 class WineTest: XCTestCase {
 
-    var network: Network = Network(layerStructure: [13,7,3], learningRate: 7.0)
+    var network: Network = Network(layerStructure: [13,7,3], learningRate: 0.3, hasBias: true)
     // for training
     var wineParameters: [[Double]] = [[Double]]()
     var wineClassifications: [[Double]] = [[Double]]()

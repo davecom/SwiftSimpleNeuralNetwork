@@ -20,6 +20,7 @@ class Layer {
     let previousLayer: Layer?
     var neurons: [Neuron]
     var outputCache: [Double]
+    var hasBias: Bool = false
     
     // for future use in deserializing networks
     init(previousLayer: Layer? = nil, neurons: [Neuron] = [Neuron]()) {
@@ -29,18 +30,22 @@ class Layer {
     }
     
     // main init
-    init(previousLayer: Layer? = nil, numNeurons: Int, activationFunction: @escaping (Double) -> Double, derivativeActivationFunction: @escaping (Double)-> Double, learningRate: Double) {
+    init(previousLayer: Layer? = nil, numNeurons: Int, activationFunction: @escaping (Double) -> Double, derivativeActivationFunction: @escaping (Double)-> Double, learningRate: Double, hasBias: Bool = false) {
         self.previousLayer = previousLayer
         self.neurons = Array<Neuron>()
+        self.hasBias = hasBias
         for _ in 0..<numNeurons {
             self.neurons.append(Neuron(weights: randomWeights(number: previousLayer?.neurons.count ?? 0), activationFunction: activationFunction, derivativeActivationFunction: derivativeActivationFunction, learningRate: learningRate))
+        }
+        if hasBias {
+            self.neurons.append(BiasNeuron(weights: randomWeights(number: previousLayer?.neurons.count ?? 0)))
         }
         self.outputCache = Array<Double>(repeating: 0.0, count: neurons.count)
     }
     
     func outputs(inputs: [Double]) -> [Double] {
         if previousLayer == nil { // input layer (first layer)
-            outputCache = inputs
+            outputCache = hasBias ? inputs + [1.0] : inputs
         } else { // hidden layer or output layer
             outputCache = neurons.map { $0.output(inputs: inputs) }
         }
