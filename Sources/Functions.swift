@@ -22,9 +22,9 @@ import Foundation
 
 // MARK: Randomization & Statistical Helpers
 
-/// Create *number* of random Doubles between 0.0 and 1.0
+/// Create *number* of random Doubles between -1.0 and 1.0
 func randomWeights(number: Int) -> [Double] {
-    return (0..<number).map{ _ in Math.randomFractional() }
+    return (0..<number).map{ _ in Math.randomFractional() * 2 - 1 }
 }
 
 /// Create *number* of random Doubles between 0.0 and *limit*

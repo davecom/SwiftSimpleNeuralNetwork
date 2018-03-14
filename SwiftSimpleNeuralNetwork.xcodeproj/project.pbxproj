@@ -21,6 +21,10 @@
 		555015C11D224E33004D3F18 /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F28BB1D0C96CB00B11A8F /* Neuron.swift */; };
 		555015C21D224E33004D3F18 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F28BF1D0C975600B11A8F /* Network.swift */; };
 		555015C31D224E33004D3F18 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F28BD1D0C972200B11A8F /* Layer.swift */; };
+		5565EEEB2058E57F000C2E2F /* t10k-images.idx3-ubyte in Resources */ = {isa = PBXBuildFile; fileRef = 5565EEE72058E57E000C2E2F /* t10k-images.idx3-ubyte */; };
+		5565EEEC2058E57F000C2E2F /* t10k-labels.idx1-ubyte in Resources */ = {isa = PBXBuildFile; fileRef = 5565EEE82058E57E000C2E2F /* t10k-labels.idx1-ubyte */; };
+		5565EEED2058E57F000C2E2F /* train-images.idx3-ubyte in Resources */ = {isa = PBXBuildFile; fileRef = 5565EEE92058E57F000C2E2F /* train-images.idx3-ubyte */; };
+		5565EEEE2058E57F000C2E2F /* train-labels.idx1-ubyte in Resources */ = {isa = PBXBuildFile; fileRef = 5565EEEA2058E57F000C2E2F /* train-labels.idx1-ubyte */; };
 		5585848F1D25C3D400978802 /* wine.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5585848E1D25C3D400978802 /* wine.csv */; };
 		558584911D25C3FE00978802 /* WineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558584901D25C3FE00978802 /* WineTest.swift */; };
 		559C37582058BB5400814909 /* BiasNeuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C37572058BB5400814909 /* BiasNeuron.swift */; };
@@ -52,6 +56,10 @@
 		555015B61D224DCB004D3F18 /* SwiftSimpleNeuralNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSimpleNeuralNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		555015B81D224DCB004D3F18 /* SinTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinTest.swift; sourceTree = "<group>"; };
 		555015BA1D224DCB004D3F18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5565EEE72058E57E000C2E2F /* t10k-images.idx3-ubyte */ = {isa = PBXFileReference; lastKnownFileType = file; path = "t10k-images.idx3-ubyte"; sourceTree = "<group>"; };
+		5565EEE82058E57E000C2E2F /* t10k-labels.idx1-ubyte */ = {isa = PBXFileReference; lastKnownFileType = file; path = "t10k-labels.idx1-ubyte"; sourceTree = "<group>"; };
+		5565EEE92058E57F000C2E2F /* train-images.idx3-ubyte */ = {isa = PBXFileReference; lastKnownFileType = file; path = "train-images.idx3-ubyte"; sourceTree = "<group>"; };
+		5565EEEA2058E57F000C2E2F /* train-labels.idx1-ubyte */ = {isa = PBXFileReference; lastKnownFileType = file; path = "train-labels.idx1-ubyte"; sourceTree = "<group>"; };
 		5585848E1D25C3D400978802 /* wine.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wine.csv; sourceTree = "<group>"; };
 		558584901D25C3FE00978802 /* WineTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WineTest.swift; sourceTree = "<group>"; };
 		559C37572058BB5400814909 /* BiasNeuron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiasNeuron.swift; path = Sources/BiasNeuron.swift; sourceTree = "<group>"; };
@@ -97,6 +105,7 @@
 		550F28AC1D0C966300B11A8F /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				5565EEEF2058E58C000C2E2F /* MNIST Data */,
 				550F28AD1D0C966300B11A8F /* AppDelegate.swift */,
 				550F28AF1D0C966300B11A8F /* Assets.xcassets */,
 				550F28B11D0C966300B11A8F /* MainMenu.xib */,
@@ -129,6 +138,17 @@
 				555015BA1D224DCB004D3F18 /* Info.plist */,
 			);
 			path = SwiftSimpleNeuralNetworkTests;
+			sourceTree = "<group>";
+		};
+		5565EEEF2058E58C000C2E2F /* MNIST Data */ = {
+			isa = PBXGroup;
+			children = (
+				5565EEE72058E57E000C2E2F /* t10k-images.idx3-ubyte */,
+				5565EEE82058E57E000C2E2F /* t10k-labels.idx1-ubyte */,
+				5565EEE92058E57F000C2E2F /* train-images.idx3-ubyte */,
+				5565EEEA2058E57F000C2E2F /* train-labels.idx1-ubyte */,
+			);
+			path = "MNIST Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,8 +237,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5565EEEC2058E57F000C2E2F /* t10k-labels.idx1-ubyte in Resources */,
+				5565EEEE2058E57F000C2E2F /* train-labels.idx1-ubyte in Resources */,
 				550F28B01D0C966300B11A8F /* Assets.xcassets in Resources */,
 				550F28B31D0C966300B11A8F /* MainMenu.xib in Resources */,
+				5565EEED2058E57F000C2E2F /* train-images.idx3-ubyte in Resources */,
+				5565EEEB2058E57F000C2E2F /* t10k-images.idx3-ubyte in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
