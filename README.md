@@ -8,9 +8,6 @@ This *teaching* project is proclaimed *simple* for two reasons:
 
 Contributions to the project will be measured not only by their functional aspects (improved performance, more features) but also by how much they stick to the philosophy.
 
-## Work in Progress!
-While this project is functional (as of this version, it is accurately predicting outcomes based on the common wine and iris data sets (see the unit tests)) it is far from complete, well documented, or finished in any reasonable way. For a production ready framework for use in other projects checkout [Swift-AI](https://github.com/collinhundley/Swift-AI).
-
 ## Installation
 
 **The project requires Xcode 9 and Swift 4.**
@@ -23,7 +20,13 @@ For the present, the best way to try the project out is through the wine and iri
 
 You can also install the project's main files (but not the unit tests) through SPM via this repository.
 
-## Unit Tests/Examples
+## Mac Example App
+
+The example app for macOS that comes with SwiftSimpleNeuralNetwork trains on 60,000 MNIST sample images and then predicts another 10,000 testing images. In my testing it reaches as high as 94% accuracy without much tuning (just many batches of training on the full dataset). This is definitely not state of the art, but for a *simple* neural network, it's a decent demonstration.
+
+![screenshot.png]
+
+## Unit Tests
 
 A check indicates a test is passing/working.
 - [x] `IrisTest.swift` uses the classic data set (contained in `iris.csv`) to classify 150 irises by four attributes.
@@ -34,8 +37,10 @@ A check indicates a test is passing/working.
 
 SwiftSimpleNeuralNetwork is Copyright 2016 David Kopec and licensed under the Apache License 2.0 (see LICENSE). As per the Apache license, contributions are also Apache licensed by default. And contributions are welcome!
 
-Datasets in the unit tests are provided curtosy of the UCI Machine Learning Repository which should be cited as:
+The wine and iris datasets in the unit tests are provided curtosy of the UCI Machine Learning Repository which should be cited as:
 > Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+
+The MNIST dataset is from [LeCun, Cortes, and Burges](http://yann.lecun.com/exdb/mnist/).
 
 The overall neural network algorithm implemented throughout the project was derived primarily from Chapter 18 of Artificial Intelligence: A Modern Approach (Third Edition) by Stuart Russell and Peter Norvig.
 
