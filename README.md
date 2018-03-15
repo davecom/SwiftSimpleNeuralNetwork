@@ -54,6 +54,4 @@ A few small individual utility functions in `Functions.swift` are from third par
 - More activation functions
 - Utility function to archive (serialize) and recreate (deserialize) trained neural networks
 - Better testing of networks with more than one layer
-- Introduction of bias nodes
 - Improved performance
-- A cool example app
