@@ -21,12 +21,12 @@ import XCTest
 
 class SwiftSimpleNeuralNetworkTests: XCTestCase {
     
-    var network: Network = Network(layerStructure: [1,6,1], learningRate: 8.0)
+    var network: Network = Network(layerStructure: [1,6,1], learningRate: 0.9)
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let xos = randomNums(number: 10000, limit: 500)
+        let xos = randomNums(number: 1000000, limit: 500)
         let ys = xos.map{[(0.5 * sin(10 * ($0 / 1000)) + 0.5)]}
         let xs = xos.map{[$0 / 1000]}
         network.train(inputs: xs, expecteds: ys, printError: true)
@@ -40,7 +40,7 @@ class SwiftSimpleNeuralNetworkTests: XCTestCase {
     func testSin() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let xos = randomNums(number: 1000, limit: 500)
+        let xos = randomNums(number: 1000000, limit: 500)
         let ys = xos.map{ (0.5 * sin(10 * ($0 / 1000)) + 0.5) }
         let xs = xos.map{[$0 / 1000]}
         let results = network.validate(inputs: xs, expecteds: ys, accuracy: 0.05)

@@ -276,7 +276,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let imageData = testingImages.map{ return $0.map{ return Double($0) / 255 }}
         let expecteds: [Int] = testingLabels.map{ Int($0) }
         let (_, _, percentage) = network.validate(inputs: imageData, expecteds: expecteds, interpretOutput: interpretOutput)
-        allTestAccuracyLabel.stringValue = "Accuracy: \(percentage)"
+        allTestAccuracyLabel.stringValue = "Accuracy: \(percentage * 100)%"
     }
 }
 
