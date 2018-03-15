@@ -24,7 +24,7 @@ You can also install the project's main files (but not the unit tests) through S
 
 The example app for macOS that comes with SwiftSimpleNeuralNetwork trains on 60,000 MNIST sample images and then predicts another 10,000 testing images. In my testing it reaches as high as 94% accuracy without much tuning (just many batches of training on the full dataset). This is definitely not state of the art, but for a *simple* neural network, it's a decent demonstration.
 
-![screenshot.png]
+![MNIST Example App Screenshot](screenshot.png)
 
 ## Unit Tests
 
