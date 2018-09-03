@@ -33,6 +33,10 @@ A check indicates a test is passing/working.
 - [x] `WineTest.swift` uses a data set of 178 wines across thirteen attributes (contained in `wine.csv`) to classify wines by cultivar (three cultivars total). The test trains on the first 150 and then validates itself by classifying the remaining 28.
 - [ ] `SinTest.swift` tries to learn to approximate the sin() function. ~80% of predictions come close to correct values.
 
+## Book Chapter
+
+Chapter 7 of [Classic Computer Science Problems in Swift](https://github.com/davecom/ClassicComputerScienceProblemsInSwift) is based on this project. It contains it a step-by-step tutorial, explaining how a slightly more primitive version of the project works.
+
 ## License, Contributions, and Attributions
 
 SwiftSimpleNeuralNetwork is Copyright 2016 David Kopec and licensed under the Apache License 2.0 (see LICENSE). As per the Apache license, contributions are also Apache licensed by default. And contributions are welcome!
@@ -53,5 +57,5 @@ A few small individual utility functions in `Functions.swift` are from third par
 - More unit tests
 - More activation functions
 - Utility function to archive (serialize) and recreate (deserialize) trained neural networks
-- Better testing of networks with more than one layer
+- Better testing of networks with more than one hidden layer
 - Improved performance
