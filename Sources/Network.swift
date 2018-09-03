@@ -53,7 +53,7 @@ class Network {
         //calculate delta for output layer neurons
         layers.last?.calculateDeltasForOutputLayer(expected: expected)
         //calculate delta for prior layers
-        for l in 1..<layers.count - 1 { // skip input layer
+        for l in (1..<layers.count - 1).reversed() { // skip input layer
             layers[l].calculateDeltasForHiddenLayer(nextLayer: layers[l + 1])
         }
     }
