@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17E6C0C5213880FA00BD0332 /* AppDelegate+NeuralNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6C0C4213880FA00BD0332 /* AppDelegate+NeuralNet.swift */; };
 		550F28AE1D0C966300B11A8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F28AD1D0C966300B11A8F /* AppDelegate.swift */; };
 		550F28B01D0C966300B11A8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 550F28AF1D0C966300B11A8F /* Assets.xcassets */; };
 		550F28B31D0C966300B11A8F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550F28B11D0C966300B11A8F /* MainMenu.xib */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17E6C0C4213880FA00BD0332 /* AppDelegate+NeuralNet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+NeuralNet.swift"; sourceTree = "<group>"; };
 		550F28AA1D0C966300B11A8F /* SwiftSimpleNeuralNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSimpleNeuralNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		550F28AD1D0C966300B11A8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		550F28AF1D0C966300B11A8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				5565EEEF2058E58C000C2E2F /* MNIST Data */,
 				550F28AD1D0C966300B11A8F /* AppDelegate.swift */,
+				17E6C0C4213880FA00BD0332 /* AppDelegate+NeuralNet.swift */,
 				550F28AF1D0C966300B11A8F /* Assets.xcassets */,
 				550F28B11D0C966300B11A8F /* MainMenu.xib */,
 				550F28B41D0C966300B11A8F /* Info.plist */,
@@ -268,6 +271,7 @@
 				550F28C01D0C975600B11A8F /* Network.swift in Sources */,
 				550F28C21D0CA5E600B11A8F /* Functions.swift in Sources */,
 				550F28AE1D0C966300B11A8F /* AppDelegate.swift in Sources */,
+				17E6C0C5213880FA00BD0332 /* AppDelegate+NeuralNet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
