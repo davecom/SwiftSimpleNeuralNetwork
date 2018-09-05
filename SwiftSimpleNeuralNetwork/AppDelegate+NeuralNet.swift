@@ -34,7 +34,7 @@ extension AppDelegate {
             var i = 0
             var image: [Byte] = [Byte](repeating: 0, count: 784) // 28 x 28 = 784
             while stream.read(&image, maxLength: 784) == 784 {
-                if (i > 10000){break}
+//                if (i > 10000){break}
                 trainingImages.append(image)
                 i += 1
                 
