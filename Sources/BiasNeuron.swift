@@ -13,7 +13,13 @@ class BiasNeuron: Neuron {
     init(weights: [Double]) {
         super.init(weights: weights, activationFunction: { _ in return 0.0 }, derivativeActivationFunction: { _ in return 0.0 })
     }
+    
     override func output(inputs: [Double]) -> Double {
         return 1.0
+    }
+    
+    // Codable
+    required convenience init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
     }
 }

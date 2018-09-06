@@ -20,8 +20,9 @@ import Foundation // for sqrt
 
 /// Represents an entire neural network. From largest to smallest we go
 /// Network -> Layers -> Neurons
-class Network {
-    var layers: [Layer]
+class Network:NSObject,Codable{
+    var layers: [Layer] = []
+    
     
     init(layerStructure:[Int], activationFunction: @escaping (Double) -> Double = sigmoid, derivativeActivationFunction: @escaping (Double) -> Double = derivativeSigmoid, learningRate: Double = 0.25, hasBias: Bool = false) {
         if (layerStructure.count < 3) {
@@ -118,4 +119,31 @@ class Network {
         let percentage = Double(correct) / Double(inputs.count)
         return (correct, inputs.count, percentage)
     }
+    
+    
+    // BEGIN CODABLE
+    init( layers: [Layer])
+    {
+        super.init()
+        self.layers = layers
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case layers
+    }
+    
+    required convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self);
+        let layers = try container.decode([Layer].self, forKey: .layers);
+        self.init(layers:layers)
+    }
+    
+    func encode(to encoder: Encoder) throws
+    {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(layers, forKey: .layers)
+    }
+    //END
+    
 }
