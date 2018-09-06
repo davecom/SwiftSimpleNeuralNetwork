@@ -18,7 +18,7 @@
 
 
 /// An individual node in a layer
-class Neuron {
+class Neuron:Codable{
     var weights: [Double]
     var activationFunction: (Double) -> Double
     var derivativeActivationFunction: (Double) -> Double
@@ -39,5 +39,38 @@ class Neuron {
         inputCache = dotProduct(inputs, weights)
         return activationFunction(inputCache)
     }
+
+    // CODABLE BEGIN
+    //  guff for saving / restoring
+    private enum CodingKeys: CodingKey {
+        case weights
+        case activationFunction
+        case derivativeActivationFunction
+        case inputCache
+        case delta
+        case learningRate
+    }
     
+    required convenience init(from decoder: Decoder) throws
+    {
+        self.init(weights: [0], activationFunction: { _ in return 0.0 }, derivativeActivationFunction: { _ in return 0.0 })
+        let container = try decoder.container(keyedBy: CodingKeys.self);
+        weights = try container.decode([Double].self, forKey: .weights);
+        activationFunction       = { _ in return 0.0 }//  try container.decode(func.self, forKey: .activationFunction)
+        derivativeActivationFunction       =  { _ in return 0.0 }//try container.decode(Double.self, forKey: .derivativeActivationFunction)
+        inputCache  = try container.decode(Double.self, forKey: .inputCache)
+        delta  = try container.decode(Double.self, forKey: .delta)
+        learningRate  = try container.decode(Double.self, forKey: .learningRate)
+    }
+    
+    func encode(to encoder: Encoder) throws
+    {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(weights, forKey: .weights)
+        try container.encode(inputCache, forKey: .inputCache)
+        try container.encode(delta, forKey: .delta)
+         try container.encode(learningRate, forKey: .learningRate)
+        // encoding escape functions ?? activationFunction /derivativeActivationFunction
+    }
+    // END
 }

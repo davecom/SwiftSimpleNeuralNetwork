@@ -15,13 +15,18 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+import Foundation
 
-class Layer {
-    let previousLayer: Layer?
+
+class Layer:Codable {
+    
+
+    var previousLayer: Layer?
     var neurons: [Neuron]
     var outputCache: [Double]
     var hasBias: Bool = false
     
+
     // for future use in deserializing networks
     init(previousLayer: Layer? = nil, neurons: [Neuron] = [Neuron]()) {
         self.previousLayer = previousLayer
@@ -69,5 +74,34 @@ class Layer {
         }
     }
     
+    // CODABLE BEGIN
+    //  guff for saving / restoring
+    private enum CodingKeys: CodingKey {
+        case previousLayer
+        case neurons
+        case outputCache
+        case hasBias
+
+    }
+
+    required convenience init(from decoder: Decoder) throws
+    {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        previousLayer = try container.decode(Layer.self, forKey: .previousLayer)
+        neurons       = try container.decode([Neuron].self, forKey: .neurons)
+        outputCache       = try container.decode([Double].self, forKey: .outputCache)
+        hasBias  = try container.decode(Bool.self, forKey: .hasBias)
+
+    }
     
+    func encode(to encoder: Encoder) throws
+    {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+         try container.encode(previousLayer, forKey: .previousLayer)
+        try container.encode(neurons, forKey: .neurons)
+        try container.encode(outputCache, forKey: .outputCache)
+        try container.encode(hasBias, forKey: .hasBias)
+    }
+    // END
 }
