@@ -3,7 +3,7 @@
 //  SwiftSimpleNeuralNetwork
 //
 //  Created by David Kopec on 3/13/18.
-//  Copyright © 2018 Oak Snow Consulting. All rights reserved.
+//  Copyright © 2018-2019 Oak Snow Consulting. All rights reserved.
 //
 
 import Foundation

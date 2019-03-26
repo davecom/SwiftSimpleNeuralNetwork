@@ -255,7 +255,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // helper function finds the highest in an Array of Double and returns its index
     func interpretOutput(output: [Double]) -> Int {
-        return output.index(of: output.max()!)!
+        return output.firstIndex(of: output.max()!)!
     }
     
     @IBAction func batchSizeChanged(sender: NSStepper) {

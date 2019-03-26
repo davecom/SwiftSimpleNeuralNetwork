@@ -10,7 +10,7 @@ Contributions to the project will be measured not only by their functional aspec
 
 ## Installation
 
-**The project requires Xcode 9 and Swift 4.**
+**The project requires Xcode 10.2 and Swift 5.**
 
 ### Manual
 
@@ -39,7 +39,7 @@ Chapter 7 of [Classic Computer Science Problems in Swift](https://github.com/dav
 
 ## License, Contributions, and Attributions
 
-SwiftSimpleNeuralNetwork is Copyright 2016 David Kopec and licensed under the Apache License 2.0 (see LICENSE). As per the Apache license, contributions are also Apache licensed by default. And contributions are welcome!
+SwiftSimpleNeuralNetwork is Copyright 2016-2019 David Kopec and licensed under the Apache License 2.0 (see LICENSE). As per the Apache license, contributions are also Apache licensed by default. And contributions are welcome!
 
 The wine and iris datasets in the unit tests are provided curtosy of the UCI Machine Learning Repository which should be cited as:
 > Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
