@@ -22,8 +22,8 @@ import Cocoa
 
 typealias Byte = UInt8
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+@main
+class AppDelegate: NSObject, NSApplicationDelegate, @unchecked Sendable {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var characterImageView: NSImageView!
@@ -148,13 +148,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSImage(cgImage: imageRef!, size: NSSize(width: 28, height: 28))
     }
 
-    func showTrainingImage(index: Int) {
+    @MainActor func showTrainingImage(index: Int) {
         characterImageView.image = imageFromGrayscaleBytes(pixelValues: trainingImages[index])
         currentCharacterIndexLabel.stringValue = "Index: \(index)"
         currentCharacterLabel.stringValue = "Label: \(trainingLabels[index])"
     }
     
-    func showTestingImage(index: Int) {
+    @MainActor func showTestingImage(index: Int) {
         testingImageView.image = imageFromGrayscaleBytes(pixelValues: testingImages[index])
         testingCharacterIndexLabel.stringValue = "Index: \(index)"
         testingCharacterLabel.stringValue = "Label: \(testingLabels[index])"
@@ -236,19 +236,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.testButton.isEnabled = false
             self.trainProgress.doubleValue = 0.0
         }
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [unowned self, numBatches = numBatches] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak self, numBatches = numBatches] in
             for i in 1...numBatches {
-                self.network.train(inputs: imageData, expecteds: expecteds, printError: false)
+                self?.network.train(inputs: imageData, expecteds: expecteds, printError: false)
                 print("Finished batch \(i) of \(numBatches)")
-                DispatchQueue.main.async { [unowned self] in
-                    self.trainProgress.doubleValue = Double(i)
+                DispatchQueue.main.async { [weak self] in
+                    self?.trainProgress.doubleValue = Double(i)
                 }
             }
             print("Done Training")
-            DispatchQueue.main.async { [unowned self] in
-                self.trainButton.isEnabled = true
-                self.testAllButton.isEnabled = true
-                self.testButton.isEnabled = true
+            DispatchQueue.main.async { [weak self] in
+                self?.trainButton.isEnabled = true
+                self?.testAllButton.isEnabled = true
+                self?.testButton.isEnabled = true
             }
         }
     }

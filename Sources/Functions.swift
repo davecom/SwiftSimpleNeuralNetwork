@@ -128,7 +128,7 @@ public func sum(x: [Double]) -> Double {
 // this struct & the randomFractional() function
 // based on http://stackoverflow.com/a/35919911/281461
 struct Math {
-    private static var seeded = false
+    nonisolated(unsafe) private static var seeded = false
     
     static func randomFractional() -> Double {
         
